@@ -4,7 +4,7 @@
 
 ## LAPRAS Card Generator
 
-Tool to generate awesome LAPRAS Score images.
+Tool to generate awesome [LAPRAS](https://lapras.com) Score images.
 
 
 * [Generator](https://lapras-card-generator.vercel.app)
