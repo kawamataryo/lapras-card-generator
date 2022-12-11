@@ -55,10 +55,11 @@ export default function Home(
         <meta name="msapplication-TileColor" content="#da532c"></meta>
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <div className="absolute right-5 top-5"><GitHubLink /></div>
+      <div className="absolute right-5 sm:top-5 bottom-5"><GitHubLink /></div>
       <div className="container m-auto grid place-content-center place-items-center h-[100svh] px-5">
-        <h1 className="absolute top-5 left-5  text-2xl">
-          LAPRAS Card Generator
+        <h1 className="absolute top-5 left-5  text-2xl flex items-center gap-1 text-2xl">
+        <svg className="x-8 w-8 font-extrabold bg-clip-text bg-gradient-to-r text-blue-800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16m-9 9H9v2h2v-2m8 0h-6v2h6v-2M7 9H5v2h2V9m12 0H9v2h10V9Z"/></svg>
+          <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-cyan-600 ">LAPRAS Card Generator</span>
         </h1>
         <MessageContext.Provider value={messageCtx}>
           <div className="max-w-[400px] drop-shadow-sm">
