@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html.dark {
   background: #000000;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #222, #000000);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #222, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+html.light {
+  background: #fff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #ddd, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #ddd, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .color-picker {
@@ -18,14 +24,21 @@ html {
   border: none;
   cursor: pointer;
 }
+
 .color-picker::-webkit-color-swatch {
   border-radius: 2px;
   border: none;
 }
+
 .color-picker::-moz-color-swatch {
   border-radius: 2;
   border: none;
 }
-.preview {
+
+.dark .preview {
     background-image: radial-gradient(hsla(var(--bc)/.2) 0.5px,hsla(var(--b2)/1) 0.5px);
+}
+
+.light .preview {
+    background-image: radial-gradient(hsla(var(--nc)/.2) 0.5px,hsla(var(--b2)/1) 0.5px);
 }
