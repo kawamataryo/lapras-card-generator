@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import Controller from "../components/Controller";
+import GitHubLink from "../components/GitHubLink";
 import LaprasCard from "../components/LaprasCard";
 import { MessageContext, useMessageCtx } from "../context/message";
 
@@ -54,8 +55,9 @@ export default function Home(
         <meta name="msapplication-TileColor" content="#da532c"></meta>
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <div className="absolute right-5 top-5"><GitHubLink /></div>
       <div className="container m-auto grid place-content-center place-items-center h-[100svh] px-5">
-        <h1 className="absolute top-5 left-5 font-thin text-2xl">
+        <h1 className="absolute top-5 left-5  text-2xl">
           LAPRAS Card Generator
         </h1>
         <MessageContext.Provider value={messageCtx}>
