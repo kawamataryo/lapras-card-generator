@@ -68,11 +68,11 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
 
   return (
     <div
-      className="border bg-gray-300 border-gray-400 dark:bg-gray-900 dark:border-gray-600 drop-shadow-sm flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-between gap-2 gap-y-4 rounded-md items-center bg-cover bg-top py-4 px-5"
+      className="border bg-gray-300 border-gray-400 dark:bg-gray-900 dark:border-gray-600 drop-shadow-sm flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-between gap-2 gap-y-4 rounded-md items-center bg-cover bg-top py-4 px-5 shadow"
       style={{ backgroundSize: "5px 5px" }}
     >
       <div>
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-500">Base</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Base</label>
         <div className="flex gap-1 mt-1">
           <input
             id="input-color"
@@ -95,7 +95,7 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         </div>
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-500">Icon</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Icon</label>
         <div className="flex gap-1 mt-1">
           <input
             id="input-color"
@@ -118,7 +118,7 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         </div>
       </div>
       <div className="">
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-500">Score</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Score</label>
         <div className="flex gap-2 mt-2 text-gray-700 dark:text-gray-100">
           <input
             name="eScore"
@@ -153,7 +153,7 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         </div>
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-500">Lang</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Lang</label>
         <div className="flex rounded-md shadow-sm mt-2" role="group">
           <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ lang == LANGUAGES.JA ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-sm transition-all`} onClick={() => setLang('ja')}>
             Ja
@@ -164,7 +164,7 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         </div>
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-500">Preset</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Preset</label>
         <div className="flex gap-1 mt-2">
           <button
             id="input-color"
