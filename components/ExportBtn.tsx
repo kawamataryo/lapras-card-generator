@@ -41,11 +41,11 @@ const ExportBtn = ({ score, theme, lang, urlQuery } : Props) => {
   const copyActionsParam = async () => {
     copyToClipboard(`
 SHARE_ID: <YOUR_SHARE_ID>
-ICON_FIRST: ${theme.icon.first}
-ICON_SECOND: ${theme.icon.second}
-BACKGROUND_FIRST: ${theme.background.first}
-BACKGROUND_SECOND: ${theme.background.second}
-LANG: ${lang}
+ICON_FIRST: "${theme.icon.first}"
+ICON_SECOND: "${theme.icon.second}"
+BACKGROUND_FIRST: "${theme.background.first}"
+BACKGROUND_SECOND: "${theme.background.second}"
+LANG: "${lang}"
 `.trim())
     ctx.setMessage('Copied Actions Params!')
   }
