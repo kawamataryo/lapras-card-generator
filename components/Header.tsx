@@ -1,12 +1,20 @@
 import { useTheme } from "next-themes";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 type Props = {
   urlQuery: string;
 }
 
 const Header = ({ urlQuery }: Props) => {
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if(!mounted) return null
 
   return (
     <>
