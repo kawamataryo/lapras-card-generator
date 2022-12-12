@@ -1,7 +1,6 @@
 import { generateScoreCardSvg } from '../lib/generateScoreCardSvg'
 import { useContext, useEffect, useState } from 'react'
 import { MessageContext } from '../context/message'
-import { useDidUpdateEffect } from '../lib/useDidUpdateEffect'
 
 type Props = {
   score: Score

@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import { LANGUAGES, PRESET_COLORS } from "../const";
-import { Popover, Menu } from "@headlessui/react";
 import ExportBtn from "./ExportBtn";
 
 type Props = {
