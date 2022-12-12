@@ -68,7 +68,7 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
 
   return (
     <div
-      className="border bg-gray-300 border-gray-400 dark:bg-base-300 dark:border-gray-600 drop-shadow-sm flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-between gap-2 gap-y-4 rounded-md items-center bg-cover bg-top py-4 px-5 shadow"
+      className="border bg-gray-200 dark:bg-base-300 dark:border-gray-600 drop-shadow-sm flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-between gap-2 gap-y-4 rounded-md items-center bg-cover bg-top py-4 px-5 shadow"
       style={{ backgroundSize: "5px 5px" }}
     >
       <div>
