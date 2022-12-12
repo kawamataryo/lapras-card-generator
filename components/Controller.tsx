@@ -168,27 +168,27 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         <div className="flex gap-1 mt-2">
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-600 to-gray-800 border border-gray-500"
+            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-600 to-gray-800 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("black")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-cyan-700 to-blue-900 border border-gray-500"
+            className="rounded-full h-5 w-5 bg-gradient-to-r from-cyan-700 to-blue-900 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("blue")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-green-600 to-lime-900 border border-gray-500"
+            className="rounded-full h-5 w-5 bg-gradient-to-r from-green-600 to-lime-900 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("green")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-pink-300 to-red-400 border border-gray-500"
+            className="rounded-full h-5 w-5 bg-gradient-to-r from-pink-300 to-red-400 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("pink")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-300 to-gray-800 border border-gray-500"
+            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-300 to-gray-800 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("gray")}
           />
         </div>
