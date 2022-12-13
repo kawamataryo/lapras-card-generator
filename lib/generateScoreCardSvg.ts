@@ -2,9 +2,9 @@ import { LANG_TEXT_SVG_PATH } from './../const';
 import { BAR_COLOR, BAR_WIDTH, MAX_SCORE } from "../const";
 
 const getBarColor = (score: number, position: 'START' | 'END') => {
-  if (score >= 4) {
+  if (score >= 3.5) {
     return BAR_COLOR.RED[position]
-  } else if (score >= 3) {
+  } else if (score >= 3.2) {
     return BAR_COLOR.YELLOW[position]
   } else {
     return BAR_COLOR.BLUE[position]
