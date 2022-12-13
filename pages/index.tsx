@@ -34,7 +34,7 @@ export default function Home(
 
   return (
     <>
-      <div className="container m-auto grid place-content-center place-items-center h-[100svh] px-5">
+      <div className="container m-auto grid place-content-center place-items-center h-[100vh] px-5">
         <Header urlQuery={urlQuery}></Header>
         <MessageContext.Provider value={messageCtx}>
           <div className="max-w-[400px] drop-shadow-sm">
