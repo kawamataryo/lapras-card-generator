@@ -36,13 +36,13 @@ export const generateScoreCardSvg = ( { score, theme, lang, isAnimation, rounded
     <path d="M259.552 81H264.78V71.1441H268.631C274.106 71.1441 278.451 68.6007 278.451 62.772C278.451 56.7666 274.106 54.859 268.631 54.859H259.552V81ZM264.78 67.011V59.0274H268.136C271.528 59.0274 273.364 59.9812 273.364 62.772C273.364 65.5627 271.528 67.011 268.136 67.011H264.78ZM273.753 81H279.582L271.316 66.5165L267.677 69.8018L273.753 81Z" fill="white"/>
     <path d="M283.632 81H300.058V76.6196H288.86V69.6605H298.009V65.2448H288.86V59.2041H299.669V54.859H283.632V81Z" fill="white"/>
     ${ LANG_TEXT_SVG_PATH[lang].engineering }
-    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="Noto Sans JP" font-size="30.5839" font-weight="bold" letter-spacing="0em"><tspan x="513" y="184.335">${formatScore(score.eScore)}</tspan>
+    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="30" font-weight="bold" letter-spacing="0em"><tspan x="513" y="181">${formatScore(score.eScore)}</tspan>
     ${ isAnimation ? '<animate attributeName="opacity" from="0" to="1" dur="1" begin="0.2s" fill="freeze"/>' : ''}
     </text>
-    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="Noto Sans JP" font-size="30.5839" font-weight="bold" letter-spacing="0em"><tspan x="513" y="262.335">${formatScore(score.bScore)}</tspan>
+    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="30" font-weight="bold" letter-spacing="0em"><tspan x="513" y="258">${formatScore(score.bScore)}</tspan>
     ${ isAnimation ? '<animate attributeName="opacity" from="0" to="1" dur="1" begin="0.8s" fill="freeze"/>' : ''}
     </text>
-    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="Noto Sans JP" font-size="30.5839" font-weight="bold" letter-spacing="0em"><tspan x="513" y="340.335">${formatScore(score.iScore)}</tspan>
+    <text fill="white" opacity="${ isAnimation ? 0 : 1 }" xml:space="preserve" style="white-space: pre" font-family="sans-serif" font-size="30" font-weight="bold" letter-spacing="0em"><tspan x="513" y="336">${formatScore(score.iScore)}</tspan>
     ${ isAnimation ? '<animate attributeName="opacity" from="0" to="1" dur="1" begin="1.4s" fill="freeze"/>' : ''}
     </text>
     ${ LANG_TEXT_SVG_PATH[lang].business }
