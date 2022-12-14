@@ -11,4 +11,4 @@ Tool to generate awesome [LAPRAS](https://lapras.com) Score images.
 
 ### Related
 
-* [LAPRAS Card Readme](https://github.com/marketplace/actions/lapras-card-actions)
+* [LAPRAS Card Readme](https://github.com/marketplace/actions/lapras-card-readme)
