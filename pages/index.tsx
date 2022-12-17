@@ -107,7 +107,7 @@ export const getServerSideProps = async ({
     props: {
       initialScore: {
         eScore: e ? Number(e) : 4.22,
-        bScore: b ? Number(b) : 3.51,
+        bScore: b ? Number(b) : 3.30,
         iScore: i ? Number(i) : 2.28,
       },
       initialTheme: {
