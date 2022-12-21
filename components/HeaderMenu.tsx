@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-const Header = () => {
+const HeaderMenu = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme();
 
@@ -46,4 +46,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderMenu;
