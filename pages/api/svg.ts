@@ -3,7 +3,16 @@ import { LANGUAGES } from "../../const"
 import { generateScoreCardSvg } from "../../lib/generateScoreCardSvg"
 
 const handler: NextApiHandler = async (req, res) => {
-  const { e, b, i, b1, b2, i1, i2, l} = req.query
+  let { e, b, i, b1, b2, i1, i2, l, u} = req.query
+      if (u) {
+        await fetch(`https://lapras.com/public/${u}.json`)
+          .then(res => res.json())
+          .then(data => {
+            e = data.e_score || 0,
+            b = data.b_score || 0,
+            i = data.i_score || 0
+          })
+      }
       const score = {
         eScore: e ? Number(e) : 4.22,
         iScore: i ? Number(i) : 3.51,

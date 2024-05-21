@@ -4,15 +4,17 @@ import ExportBtn from "./ExportBtn";
 
 type Props = {
   themeColor: Theme;
+  username: string;
   score: Score;
   urlQuery: string
   lang: 'ja' | 'en'
   setThemeColor: (theme: Theme) => void;
+  setUsername: (username: string) => void;
   setScore: (score: Score) => void;
   setLang: (lang: 'ja' | 'en') => void
 };
 
-const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang, setLang }: Props) => {
+const Controller = ({ username, setUsername, score, setScore, urlQuery, setThemeColor, themeColor, lang, setLang }: Props) => {
   const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value: _value } = e.target
     const value = Number(_value)
@@ -28,6 +30,27 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         setScore({ ...score, iScore: value})
         break
     }
+  }
+
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+    if (!value) {
+      setScore({ eScore: 0, bScore: 0, iScore: 0 })
+      return
+    }
+    setUsername(`${value}`)
+    fetch(`/api/profile?username=${value}`)
+      .then(res => res.json())
+      .then(data => {
+        setScore({
+          eScore: data.e_score || 0,
+          bScore: data.b_score || 0,
+          iScore: data.i_score || 0,
+        })
+      })
+      .catch(() => {
+        setScore({ eScore: 0, bScore: 0, iScore: 0 })
+      })
   }
 
   const handleThemeChange = (name: string, color: string) => {
@@ -118,8 +141,16 @@ const Controller = ({ score, setScore, urlQuery, setThemeColor, themeColor, lang
         </div>
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Score</label>
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Username or Score</label>
         <div className="flex gap-2 mt-2 text-gray-700 dark:text-gray-100">
+          <input
+            name="eScore"
+            type="text"
+            value={username}
+            onChange={handleUsernameChange}
+            className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+          />
+          or
           <input
             name="eScore"
             type="number"
