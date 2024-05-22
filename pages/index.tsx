@@ -23,8 +23,9 @@ export default function Home(
   const [score, setScore] = useState<Score>(initialScore);
   const [themeColor, setThemeColor] = useState<Theme>(initialTheme);
   const [lang, setLang] = useState<Language>(initialLang)
+  const [username, setUsername] = useState<string>("");
 
-  const urlQuery = `?e=${score.eScore}&b=${score.bScore}&i=${score.iScore}&b1=${encodeURIComponent(themeColor.background.first)}&b2=${encodeURIComponent(themeColor.background.second)}&i1=${encodeURIComponent(themeColor.icon.first)}&i2=${encodeURIComponent(themeColor.icon.second)}&l=${lang}`;
+  const urlQuery = `?e=${score.eScore}&b=${score.bScore}&i=${score.iScore}&b1=${encodeURIComponent(themeColor.background.first)}&b2=${encodeURIComponent(themeColor.background.second)}&i1=${encodeURIComponent(themeColor.icon.first)}&i2=${encodeURIComponent(themeColor.icon.second)}&l=${lang}&u=${username}`;
 
   const messageCtx =  useMessageCtx()
 
@@ -43,6 +44,8 @@ export default function Home(
           </div>
           <div className="mt-16">
             <Controller
+              username={username}
+              setUsername={setUsername}
               score={score}
               setScore={setScore}
               themeColor={themeColor}
