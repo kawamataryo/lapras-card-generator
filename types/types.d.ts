@@ -15,4 +15,15 @@ type Score = {
   iScore: number
 }
 
+type TechScore = {
+  eScore: number
+  topPercentile?: number
+  githubScore?: number
+  techArticleScore?: number
+  techEventScore?: number
+  tagCountScore?: number
+}
+
 type Language = 'ja' | 'en'
+
+type CardType = 'score' | 'tech'
