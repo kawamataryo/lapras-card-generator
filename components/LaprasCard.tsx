@@ -1,17 +1,22 @@
 import { generateScoreCardSvg } from '../lib/generateScoreCardSvg'
+import { generateTechCardSvg } from '../lib/generateTechCardSvg'
 import { useContext, useEffect, useState } from 'react'
 import { MessageContext } from '../context/message'
 
 type Props = {
+  cardType: CardType
   score: Score
+  techScore: TechScore
   theme: Theme
   lang: Language
 }
 
 let timerId: ReturnType<typeof setTimeout>
 
-const LaprasCard = ({ score, theme, lang }: Props) => {
-  const svg = generateScoreCardSvg({ score, theme, isAnimation: false, lang, rounded: true })
+const LaprasCard = ({ cardType, score, techScore, theme, lang }: Props) => {
+  const svg = cardType === 'tech'
+    ? generateTechCardSvg({ score: techScore, theme, isAnimation: false, lang, rounded: true })
+    : generateScoreCardSvg({ score, theme, isAnimation: false, lang, rounded: true })
   const buff = Buffer.from(svg);
   const base64data = buff.toString('base64');
   const ctx = useContext(MessageContext);

@@ -6,15 +6,21 @@ type Props = {
   themeColor: Theme;
   username: string;
   score: Score;
+  techScore: TechScore;
+  cardType: CardType;
+  techDetailsNote: string;
   urlQuery: string
   lang: 'ja' | 'en'
   setThemeColor: (theme: Theme) => void;
   setUsername: (username: string) => void;
   setScore: (score: Score) => void;
+  setTechScore: (techScore: TechScore) => void;
+  setCardType: (cardType: CardType) => void;
+  setTechDetailsNote: (note: string) => void;
   setLang: (lang: 'ja' | 'en') => void
 };
 
-const Controller = ({ username, setUsername, score, setScore, urlQuery, setThemeColor, themeColor, lang, setLang }: Props) => {
+const Controller = ({ username, setUsername, score, setScore, techScore, setTechScore, cardType, setCardType, techDetailsNote, setTechDetailsNote, urlQuery, setThemeColor, themeColor, lang, setLang }: Props) => {
   const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value: _value } = e.target
     const value = Number(_value)
@@ -32,10 +38,17 @@ const Controller = ({ username, setUsername, score, setScore, urlQuery, setTheme
     }
   }
 
+  const handleTechScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setTechScore({ ...techScore, [name]: Number(value) })
+  }
+
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
+    setTechDetailsNote('')
     if (!value) {
       setScore({ eScore: 0, bScore: 0, iScore: 0 })
+      setTechScore({ eScore: 0 })
       return
     }
     setUsername(`${value}`)
@@ -47,9 +60,31 @@ const Controller = ({ username, setUsername, score, setScore, urlQuery, setTheme
           bScore: data.b_score || 0,
           iScore: data.i_score || 0,
         })
+        const details = data.e_score_details
+        if (details) {
+          setTechScore({
+            eScore: data.e_score || 0,
+            topPercentile: details.invert_e_score_percentile,
+            githubScore: details.github_score,
+            techArticleScore: details.tech_article_score,
+            techEventScore: details.tech_event_score,
+            tagCountScore: details.tag_count_score,
+          })
+          return
+        }
+        setTechScore({ eScore: data.e_score || 0 })
+        if (cardType === 'tech') {
+          setTechDetailsNote(
+            lang === 'ja'
+              ? 'このユーザーはまだ技術力スコアの内訳データがありません。従来のスコアカードを表示します。'
+              : 'This user has no breakdown data yet. Showing the Score card instead.'
+          )
+          setCardType('score')
+        }
       })
       .catch(() => {
         setScore({ eScore: 0, bScore: 0, iScore: 0 })
+        setTechScore({ eScore: 0 })
       })
   }
 
@@ -144,43 +179,130 @@ const Controller = ({ username, setUsername, score, setScore, urlQuery, setTheme
         <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Username or Score</label>
         <div className="flex gap-2 mt-2 text-gray-700 dark:text-gray-100">
           <input
-            name="eScore"
+            name="username"
             type="text"
             value={username}
             onChange={handleUsernameChange}
             className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
           />
           or
-          <input
-            name="eScore"
-            type="number"
-            max="5.00"
-            min="0"
-            step="0.01"
-            value={score.eScore}
-            onChange={handleScoreChange}
-            className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
-          />
-          <input
-            name="bScore"
-            type="number"
-            max="5.00"
-            min="0"
-            step="0.01"
-            value={score.bScore}
-            onChange={handleScoreChange}
-            className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
-          />
-          <input
-            name="iScore"
-            type="number"
-            max="5.00"
-            min="0"
-            step="0.01"
-            value={score.iScore}
-            onChange={handleScoreChange}
-            className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
-          />
+          { cardType === 'tech' ? (
+            <>
+              <input
+                title="Engineering score"
+                name="eScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={techScore.eScore}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+              <input
+                title="Top percentile"
+                name="topPercentile"
+                type="number"
+                max="100"
+                min="0"
+                step="0.01"
+                value={techScore.topPercentile ?? ''}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+              <input
+                title="GitHub score"
+                name="githubScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={techScore.githubScore ?? ''}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+              <input
+                title="Tech article score"
+                name="techArticleScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={techScore.techArticleScore ?? ''}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+              <input
+                title="Tech event score"
+                name="techEventScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={techScore.techEventScore ?? ''}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+              <input
+                title="Tag count score"
+                name="tagCountScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={techScore.tagCountScore ?? ''}
+                onChange={handleTechScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+              />
+            </>
+          ) : (
+            <>
+              <input
+                name="eScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={score.eScore}
+                onChange={handleScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+              />
+              <input
+                name="bScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={score.bScore}
+                onChange={handleScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+              />
+              <input
+                name="iScore"
+                type="number"
+                max="5.00"
+                min="0"
+                step="0.01"
+                value={score.iScore}
+                onChange={handleScoreChange}
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+              />
+            </>
+          ) }
+        </div>
+        { techDetailsNote && (
+          <p className="text-xs text-amber-600 dark:text-amber-400 mt-1 max-w-[380px]">{techDetailsNote}</p>
+        ) }
+      </div>
+      <div className="basis-[91px]">
+        <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Type</label>
+        <div className="flex rounded-md shadow-sm mt-2" role="group">
+          <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ cardType === 'score' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-sm transition-all`} onClick={() => { setCardType('score'); setTechDetailsNote('') }}>
+            Score
+          </button>
+          <button type="button" className={`py-[2px] px-4 text-xs  focus:z-10 ${ cardType === 'tech' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-r-sm transition-all`} onClick={() => { setCardType('tech'); setTechDetailsNote('') }}>
+            Tech
+          </button>
         </div>
       </div>
       <div className="basis-[91px]">
@@ -225,7 +347,7 @@ const Controller = ({ username, setUsername, score, setScore, urlQuery, setTheme
         </div>
       </div>
       <div className="grow">
-        <ExportBtn score={score} theme={themeColor} lang={lang} urlQuery={urlQuery}/>
+        <ExportBtn cardType={cardType} score={score} techScore={techScore} theme={themeColor} lang={lang} urlQuery={urlQuery}/>
       </div>
     </div>
   );
