@@ -15,23 +15,42 @@ type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export default function Home(
   {
+    initialCardType,
     initialScore,
+    initialTechScore,
     initialTheme,
     initialLang,
   }: Props,
 ) {
+  const [cardType, setCardType] = useState<CardType>(initialCardType);
   const [score, setScore] = useState<Score>(initialScore);
+  const [techScore, setTechScore] = useState<TechScore>(initialTechScore);
+  const [techDetailsNote, setTechDetailsNote] = useState<string>("");
   const [themeColor, setThemeColor] = useState<Theme>(initialTheme);
   const [lang, setLang] = useState<Language>(initialLang)
   const [username, setUsername] = useState<string>("");
 
-  const urlQuery = `?e=${score.eScore}&b=${score.bScore}&i=${score.iScore}&b1=${encodeURIComponent(themeColor.background.first)}&b2=${encodeURIComponent(themeColor.background.second)}&i1=${encodeURIComponent(themeColor.icon.first)}&i2=${encodeURIComponent(themeColor.icon.second)}&l=${lang}&u=${username}`;
+  const themeQuery = `b1=${encodeURIComponent(themeColor.background.first)}&b2=${encodeURIComponent(themeColor.background.second)}&i1=${encodeURIComponent(themeColor.icon.first)}&i2=${encodeURIComponent(themeColor.icon.second)}`;
+  const urlQuery = cardType === 'tech'
+    ? `?${[
+        'type=tech',
+        `e=${techScore.eScore}`,
+        techScore.topPercentile !== undefined ? `ep=${techScore.topPercentile}` : null,
+        techScore.githubScore !== undefined ? `g=${techScore.githubScore}` : null,
+        techScore.techArticleScore !== undefined ? `ta=${techScore.techArticleScore}` : null,
+        techScore.techEventScore !== undefined ? `te=${techScore.techEventScore}` : null,
+        techScore.tagCountScore !== undefined ? `tg=${techScore.tagCountScore}` : null,
+        themeQuery,
+        `l=${lang}`,
+        `u=${username}`,
+      ].filter((part): part is string => part !== null).join('&')}`
+    : `?e=${score.eScore}&b=${score.bScore}&i=${score.iScore}&${themeQuery}&l=${lang}&u=${username}`;
 
   const messageCtx =  useMessageCtx()
 
   useEffect(() => {
     router.push(`/${urlQuery}`, undefined, { shallow: true });
-  }, [score, themeColor, urlQuery]);
+  }, [cardType, score, techScore, themeColor, urlQuery]);
 
   return (
     <>
@@ -40,7 +59,7 @@ export default function Home(
         <HeaderMenu />
         <MessageContext.Provider value={messageCtx}>
           <div className="max-w-[400px] drop-shadow-sm">
-            <LaprasCard score={score} theme={themeColor} lang={lang} />
+            <LaprasCard cardType={cardType} score={score} techScore={techScore} theme={themeColor} lang={lang} />
           </div>
           <div className="mt-16">
             <Controller
@@ -48,6 +67,12 @@ export default function Home(
               setUsername={setUsername}
               score={score}
               setScore={setScore}
+              techScore={techScore}
+              setTechScore={setTechScore}
+              cardType={cardType}
+              setCardType={setCardType}
+              techDetailsNote={techDetailsNote}
+              setTechDetailsNote={setTechDetailsNote}
               themeColor={themeColor}
               setThemeColor={setThemeColor}
               urlQuery={urlQuery}
@@ -63,14 +88,24 @@ export default function Home(
 export const getServerSideProps = async ({
   query,
 }: GetServerSidePropsContext) => {
-  const { e, b, i, b1, b2, i1, i2, l } = query;
+  const { type, e, b, i, ep, g, ta, te, tg, b1, b2, i1, i2, l } = query;
+  const cardType = (type === 'tech' ? 'tech' : 'score') as CardType;
 
   return {
     props: {
+      initialCardType: cardType,
       initialScore: {
         eScore: e ? Number(e) : 4.22,
         bScore: b ? Number(b) : 3.30,
         iScore: i ? Number(i) : 2.28,
+      },
+      initialTechScore: {
+        eScore: e ? Number(e) : 4.22,
+        topPercentile: ep !== undefined ? Number(ep) : 8.00,
+        githubScore: g !== undefined ? Number(g) : 3.50,
+        techArticleScore: ta !== undefined ? Number(ta) : 2.80,
+        techEventScore: te !== undefined ? Number(te) : 1.50,
+        tagCountScore: tg !== undefined ? Number(tg) : 4.00,
       },
       initialTheme: {
         background: {

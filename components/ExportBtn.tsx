@@ -1,16 +1,18 @@
 import { Popover } from "@headlessui/react";
 import { useContext } from "react";
-import { LANG_TEXT } from "../const";
+import { LANG_TEXT, TECH_LANG_TEXT } from "../const";
 import { MessageContext } from "../context/message";
 
 type Props = {
+  cardType: CardType
   score: Score
+  techScore: TechScore
   theme: Theme
   lang: Language
   urlQuery: string
 }
 
-const ExportBtn = ({ score, theme, lang, urlQuery } : Props) => {
+const ExportBtn = ({ cardType, score, techScore, theme, lang, urlQuery } : Props) => {
   const copyToClipboard = async (item: string | ClipboardItem) => {
     if (item instanceof ClipboardItem) {
       await navigator.clipboard.write([item])
@@ -41,7 +43,7 @@ const ExportBtn = ({ score, theme, lang, urlQuery } : Props) => {
   const copyActionsParam = async () => {
     copyToClipboard(`
 SHARE_ID: <YOUR_SHARE_ID>
-ICON_FIRST: "${theme.icon.first}"
+${ cardType === 'tech' ? 'CARD_TYPE: "tech"\n' : '' }ICON_FIRST: "${theme.icon.first}"
 ICON_SECOND: "${theme.icon.second}"
 BACKGROUND_FIRST: "${theme.background.first}"
 BACKGROUND_SECOND: "${theme.background.second}"
@@ -51,7 +53,14 @@ LANG: "${lang}"
   }
 
   const shareOnTwitter = async () => {
-    const description = `LAPRAS SCORE
+    const description = cardType === 'tech'
+      ? `LAPRAS SCORE
+${TECH_LANG_TEXT[lang].engineering}: ${techScore.eScore}${ techScore.topPercentile !== undefined ? ` (${TECH_LANG_TEXT[lang].top} ${techScore.topPercentile}%)` : '' }
+
+${location.href}
+
+`
+      : `LAPRAS SCORE
 ${LANG_TEXT[lang].engineering}: ${score.eScore} / ${LANG_TEXT[lang].business}: ${score.bScore} /${LANG_TEXT[lang].influence}: ${score.iScore}
 
 ${location.href}
