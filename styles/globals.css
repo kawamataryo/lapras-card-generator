@@ -1,14 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-html.dark {
+/* Preserve the v3 border color when no explicit border color is set. */
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+html[data-theme="dark"] {
   background: #000000;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #222, #000000);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #222, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-html.light {
+html[data-theme="light"] {
   background: #fff;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #eee, #fff);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #eee, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -35,10 +44,10 @@ html.light {
   border: none;
 }
 
-.dark .preview {
-    background-image: radial-gradient(hsla(var(--bc)/.2) 0.5px,hsla(var(--b2)/1) 0.5px);
+[data-theme="dark"] .preview {
+    background-image: radial-gradient(color-mix(in oklab, var(--color-base-content) 20%, transparent) 0.5px,var(--color-base-200) 0.5px);
 }
 
-.light .preview {
-    background-image: radial-gradient(hsla(var(--nc)/.2) 0.5px,hsla(var(--b2)/1) 0.5px);
+[data-theme="light"] .preview {
+    background-image: radial-gradient(color-mix(in oklab, var(--color-neutral-content) 20%, transparent) 0.5px,var(--color-base-200) 0.5px);
 }

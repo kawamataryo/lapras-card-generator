@@ -58,3 +58,19 @@ https://lapras-card-generator.vercel.app/api/svg?type=tech&e=4.12&ep=8.00&g=4.30
 
 Social preview metadata uses `/api/png`. The unused `/api/og` endpoint has been
 removed; use `/api/png` for PNG images and `/api/svg` for SVG images.
+
+### Development
+
+Use Node.js 24 and npm (the committed `package-lock.json` is the source of truth).
+
+```sh
+npm ci
+npm run lint
+npm run build
+npm run test:smoke
+npm start
+```
+
+TypeScript stays on the latest 6.0 patch because the current TypeScript ESLint
+parser does not yet support TypeScript 7's compiler API. ESLint uses the latest
+9.x patch to stay within the supported peer ranges of the lint plugins.
