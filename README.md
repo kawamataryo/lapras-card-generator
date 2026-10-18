@@ -53,3 +53,8 @@ https://lapras-card-generator.vercel.app/api/svg?type=tech&e=4.12&ep=8.00&g=4.30
 ### Related
 
 * [LAPRAS Card Readme](https://github.com/marketplace/actions/lapras-card-readme)
+
+### Image API
+
+Social preview metadata uses `/api/png`. The unused `/api/og` endpoint has been
+removed; use `/api/png` for PNG images and `/api/svg` for SVG images.
