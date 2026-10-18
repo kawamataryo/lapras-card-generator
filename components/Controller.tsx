@@ -126,7 +126,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
 
   return (
     <div
-      className="border bg-gray-200 dark:bg-gray-800 dark:border-gray-600 drop-shadow-sm flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-start gap-2 gap-y-4 rounded-md items-center py-4 px-5 shadow"
+      className="border bg-gray-200 dark:bg-gray-800 dark:border-gray-600 drop-shadow-xs flex flex-wrap sm:min-w-fit w-full md:gap-5 justify-start gap-2 gap-y-4 rounded-md items-center py-4 px-5 shadow-sm"
       style={{ backgroundSize: "5px 5px" }}
     >
       <div className="basis-[60px]">
@@ -183,7 +183,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
             type="text"
             value={username}
             onChange={handleUsernameChange}
-            className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+            className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-20"
           />
           or
           { cardType === 'tech' ? (
@@ -197,7 +197,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.eScore}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
               <input
                 title="Top percentile"
@@ -208,7 +208,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.topPercentile ?? ''}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
               <input
                 title="GitHub score"
@@ -219,7 +219,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.githubScore ?? ''}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
               <input
                 title="Tech article score"
@@ -230,7 +230,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.techArticleScore ?? ''}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
               <input
                 title="Tech event score"
@@ -241,7 +241,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.techEventScore ?? ''}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
               <input
                 title="Tag count score"
@@ -252,7 +252,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={techScore.tagCountScore ?? ''}
                 onChange={handleTechScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0 w-14"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-14"
               />
             </>
           ) : (
@@ -265,7 +265,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={score.eScore}
                 onChange={handleScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-20"
               />
               <input
                 name="bScore"
@@ -275,7 +275,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={score.bScore}
                 onChange={handleScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-20"
               />
               <input
                 name="iScore"
@@ -285,7 +285,7 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
                 step="0.01"
                 value={score.iScore}
                 onChange={handleScoreChange}
-                className="input input-bordered bg-gray-100 dark:bg-gray-800 input-xs rounded-sm pr-0"
+                className="input bg-gray-100 dark:bg-gray-800 input-xs rounded-xs pr-0 w-20"
               />
             </>
           ) }
@@ -296,22 +296,22 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
       </div>
       <div className="basis-[91px]">
         <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Type</label>
-        <div className="flex rounded-md shadow-sm mt-2" role="group">
-          <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ cardType === 'score' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-sm transition-all`} onClick={() => { setCardType('score'); setTechDetailsNote('') }}>
+        <div className="flex rounded-md shadow-xs mt-2" role="group">
+          <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ cardType === 'score' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-xs transition-all`} onClick={() => { setCardType('score'); setTechDetailsNote('') }}>
             Score
           </button>
-          <button type="button" className={`py-[2px] px-4 text-xs  focus:z-10 ${ cardType === 'tech' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-r-sm transition-all`} onClick={() => { setCardType('tech'); setTechDetailsNote('') }}>
+          <button type="button" className={`py-[2px] px-4 text-xs  focus:z-10 ${ cardType === 'tech' ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-r-xs transition-all`} onClick={() => { setCardType('tech'); setTechDetailsNote('') }}>
             Tech
           </button>
         </div>
       </div>
       <div className="basis-[91px]">
         <label className="block text-xs font-bold text-gray-600 dark:text-gray-400">Lang</label>
-        <div className="flex rounded-md shadow-sm mt-2" role="group">
-          <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ lang == LANGUAGES.JA ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-sm transition-all`} onClick={() => setLang('ja')}>
+        <div className="flex rounded-md shadow-xs mt-2" role="group">
+          <button type="button" className={`py-[2px] px-4 text-xs focus:z-10 ${ lang == LANGUAGES.JA ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-l-xs transition-all`} onClick={() => setLang('ja')}>
             Ja
           </button>
-          <button type="button" className={`py-[2px] px-4 text-xs  focus:z-10 ${ lang == LANGUAGES.EN ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-r-sm transition-all`} onClick={() => setLang('en')}>
+          <button type="button" className={`py-[2px] px-4 text-xs  focus:z-10 ${ lang == LANGUAGES.EN ? 'bg-gray-400 text-gray-100 dark:bg-gray-500 dark:text-gray-200' : 'bg-gray-100 text-gray-800 hover:bg-slate-200 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'} rounded-r-xs transition-all`} onClick={() => setLang('en')}>
             En
           </button>
         </div>
@@ -321,27 +321,27 @@ const Controller = ({ username, setUsername, score, setScore, techScore, setTech
         <div className="flex gap-1 mt-2">
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-600 to-gray-800 border border-white dark:border-gray-500"
+            className="rounded-full h-5 w-5 bg-linear-to-r from-gray-600 to-gray-800 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("black")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-cyan-700 to-blue-900 border border-white dark:border-gray-500"
+            className="rounded-full h-5 w-5 bg-linear-to-r from-cyan-700 to-blue-900 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("blue")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-green-600 to-lime-900 border border-white dark:border-gray-500"
+            className="rounded-full h-5 w-5 bg-linear-to-r from-green-600 to-lime-900 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("green")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-pink-300 to-red-400 border border-white dark:border-gray-500"
+            className="rounded-full h-5 w-5 bg-linear-to-r from-pink-300 to-red-400 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("pink")}
           />
           <button
             id="input-color"
-            className="rounded-full h-5 w-5 bg-gradient-to-r from-gray-300 to-gray-800 border border-white dark:border-gray-500"
+            className="rounded-full h-5 w-5 bg-linear-to-r from-gray-300 to-gray-800 border border-white dark:border-gray-500"
             onClick={() => setPresetTheme("gray")}
           />
         </div>

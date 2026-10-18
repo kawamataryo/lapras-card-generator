@@ -58,7 +58,7 @@ export default function Home(
       <div className="m-auto grid place-content-center place-items-center h-[100vh] px-5">
         <HeaderMenu />
         <MessageContext.Provider value={messageCtx}>
-          <div className="max-w-[400px] drop-shadow-sm">
+          <div className="max-w-[400px] drop-shadow-xs">
             <LaprasCard cardType={cardType} score={score} techScore={techScore} theme={themeColor} lang={lang} />
           </div>
           <div className="mt-16">

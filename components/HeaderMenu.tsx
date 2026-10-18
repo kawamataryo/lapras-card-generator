@@ -1,13 +1,13 @@
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const subscribe = () => () => {}
+const getSnapshot = () => true
+const getServerSnapshot = () => false
 
 const HeaderMenu = () => {
-  const [mounted, setMounted] = useState(false)
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   if(!mounted) return null
 
@@ -16,7 +16,7 @@ const HeaderMenu = () => {
       <div className="absolute top-0 w-full  p-5 text-2xl flex items-center justify-between text-2xl">
         <h1 className="flex items-center gap-2">
           <svg
-            className="x-8 w-8 font-extrabold bg-clip-text bg-gradient-to-r text-blue-800"
+            className="x-8 w-8 font-extrabold bg-clip-text bg-linear-to-r text-blue-800"
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -26,7 +26,7 @@ const HeaderMenu = () => {
               d="M20 4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16m-9 9H9v2h2v-2m8 0h-6v2h6v-2M7 9H5v2h2V9m12 0H9v2h10V9Z"
             />
           </svg>
-          <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-cyan-600 ">
+          <span className="font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-800 to-cyan-600 ">
             LAPRAS Card Generator
           </span>
         </h1>
